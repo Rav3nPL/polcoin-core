@@ -18,13 +18,13 @@
 #define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 5
+#define CLIENT_VERSION_MINOR 6
 
 /* Build revision */
 #define CLIENT_VERSION_REVISION 1
 
 /* Version is release */
-#define COPYRIGHT_YEAR 2016
+#define COPYRIGHT_YEAR 2017
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
@@ -274,7 +274,7 @@
 #define PACKAGE_NAME "Polcoin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Polcoin Core 1.5.1"
+#define PACKAGE_STRING "Polcoin Core 1.6.1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "polcoin"
@@ -283,7 +283,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.5.1"
+#define PACKAGE_VERSION "1.6.1"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
