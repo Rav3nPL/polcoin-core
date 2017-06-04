@@ -71,7 +71,7 @@ static const Checkpoints::CCheckpointData data = {
     }; 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
-        ( 546, uint256("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70"))
+        ( 546, uint256("00000000cb782a751c1a650ff0762aba6c00d59d72c7719e590ec15ec54036e7"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
@@ -199,10 +199,10 @@ public:
     CTestNetParams() {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x0b;
-        pchMessageStart[1] = 0x11;
-        pchMessageStart[2] = 0x09;
-        pchMessageStart[3] = 0x07;
+        pchMessageStart[0] = 0xa7;
+        pchMessageStart[1] = 0x74;
+        pchMessageStart[2] = 0x61;
+        pchMessageStart[3] = 0x84;
         vAlertPubKey = ParseHex("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
         nDefaultPort = 19338;
         nEnforceBlockUpgradeMajority = 51;
@@ -214,18 +214,29 @@ public:
         nMaxTipAge = 0x7fffffff;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1296688602;
-        genesis.nNonce = 414098458;
+        const char* pszTimestamp = "Birth of a new PLC testnet";
+        CMutableTransaction txNew;
+        txNew.vin.resize(1);
+        txNew.vout.resize(1);
+        txNew.vin[0].scriptSig = CScript() << 0xa6736083 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+        txNew.vout[0].nValue = 50;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("506177656c2044726f62656b203230313430383036") << OP_CHECKSIG; //Paweł Drobek 20140806
+        genesis.vtx.push_back(txNew);
+        genesis.hashPrevBlock = 0;
+        genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+        genesis.nVersion = 1;
+        genesis.nTime    = 1407311815;
+        genesis.nBits    = 0x1d00ffff;
+	genesis.nNonce = 1311545610;
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
+//        assert(hashGenesisBlock == uint256("0x00000000cb782a751c1a650ff0762aba6c00d59d72c7719e590ec15ec54036e7"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("alexykot.me", "testnet-seed.alexykot.me"));
-        vSeeds.push_back(CDNSSeedData("polcoin.petertodd.org", "testnet-seed.polcoin.petertodd.org"));
-        vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
+        vSeeds.push_back(CDNSSeedData("seed.polcoin.pl", "seed.polcoin.pl"));
+/*        vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
         vSeeds.push_back(CDNSSeedData("polcoin.schildbach.de", "testnet-seed.polcoin.schildbach.de"));
-
+*/
         base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
         base58Prefixes[SECRET_KEY]     = list_of(239);
