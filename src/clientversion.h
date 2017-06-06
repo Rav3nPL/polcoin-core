@@ -17,7 +17,7 @@
 //! These need to be macros, as clientversion.cpp's and polcoin*-res.rc's voodoo requires it
 #define CLIENT_VERSION_MAJOR 1
 #define CLIENT_VERSION_MINOR 6
-#define CLIENT_VERSION_REVISION 0
+#define CLIENT_VERSION_REVISION 1
 #define CLIENT_VERSION_BUILD 1
 
 //! Set to true for release, false for prerelease or test build
@@ -59,6 +59,7 @@ static const int CLIENT_VERSION =
                          +       1 * CLIENT_VERSION_BUILD;
 
 extern const std::string CLIENT_NAME;
+extern const std::string CLIENT_VERSION_SUFFIX;
 extern const std::string CLIENT_BUILD;
 extern const std::string CLIENT_DATE;
 

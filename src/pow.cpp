@@ -88,9 +88,7 @@ unsigned int DarkGravityWave3(const CBlockIndex* pindexLast, const CBlockHeader 
     int64_t PastBlocksMin = 24;
     int64_t PastBlocksMax = 24;
     int64_t CountBlocks = 0;
-//	CBigNum 
     uint256 PastDifficultyAverage;
-//    CBigNum 
     uint256 PastDifficultyAveragePrev;
     uint256 bnProofOfWorkLimit = Params().ProofOfWorkLimit();
     int64_t nTargetSpacing = Params().TargetSpacing();
@@ -128,7 +126,6 @@ unsigned int DarkGravityWave3(const CBlockIndex* pindexLast, const CBlockHeader 
     }
     
     // bnNew is the difficulty
-//    CBigNum 
     uint256 bnNew(PastDifficultyAverage);
 
     // nTargetTimespan is the time that the CountBlocks should have taken to be generated.
